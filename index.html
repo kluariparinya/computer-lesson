@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside Computer: เพื่อนรักคอมพิวเตอร์</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600&family=Sarabun:wght@300;400;700&display=swap');
+        
+        :root {
+            --primary-soft: #eef2ff;
+            --accent-soft: #6366f1;
+        }
+
+        body { 
+            font-family: 'Sarabun', sans-serif; 
+            background-color: #f8fafc; 
+            color: #1e293b; 
+            scroll-behavior: smooth; 
+        }
+
+        h1, h2, h3, .nav-brand { font-family: 'Chakra Petch', sans-serif; }
+
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: 0.3s; 
+        }
+        .glass-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #818cf8;
+        }
+
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); }
+        
+        .quiz-btn { 
+            background: #fff; 
+            border: 2px solid #e2e8f0; 
+            width: 100%; text-align: left; padding: 1rem; border-radius: 1rem; transition: 0.2s; 
+        }
+        .quiz-btn:hover { background: #f5f3ff; border-color: #6366f1; }
+        .correct { background: #dcfce7 !important; border-color: #22c55e !important; color: #166534; }
+        .incorrect { background: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b; }
+
+        .section-title { position: relative; display: inline-block; margin-bottom: 2rem; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60%; height: 4px; background: #6366f1; border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-indigo-600 nav-brand">💻 COMP-FRIENDLY</div>
+            <div class="space-x-6 hidden md:flex font-medium">
+                <a href="#hardware" class="hover:text-indigo-600">อุปกรณ์</a>
+                <a href="#storybook" class="hover:text-indigo-600">นิทาน</a>
+                <a href="#video" class="hover:text-indigo-600">วิดีโอ</a>
+                <a href="#games" class="hover:text-indigo-600">เกมส์</a>
+                <a href="#quiz" class="hover:text-indigo-600">ควิซ</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-20 px-4 text-center bg-gradient-to-tr from-indigo-50 via-white to-blue-50">
+        <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-6">ท่องโลกคอมพิวเตอร์มหัศจรรย์</h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">เรียนรู้เรื่องฮาร์ดแวร์และซอฟต์แวร์ผ่านนิทาน วิดีโอ และเกมสุดสนุก</p>
+        <div class="mt-10 flex justify-center gap-4">
+            <a href="#storybook" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-700 shadow-lg transition">เริ่มอ่านนิทาน</a>
+            <a href="#games" class="bg-white text-indigo-600 border-2 border-indigo-600 px-8 py-3 rounded-full font-bold hover:bg-indigo-50 transition">เล่นเกมทบทวน</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pb-20">
+
+        <section id="hardware" class="py-20">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold section-title">🔍 ส่องกล้องมองอุปกรณ์</h2>
+                <p class="text-slate-500 mt-4 text-lg">มาดูกันว่าข้างในกล่องมหัศจรรย์นี้ มีใครแอบทำงานอยู่บ้าง!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+                <div onclick="openModal('CPU (หน่วยประมวลผลกลาง)', 'เปรียบเสมือน หัวหน้าคนงาน หรือ สมอง ที่คอยสั่งการทุกอย่างในคอมพิวเตอร์ ถ้าไม่มี CPU คอมพิวเตอร์จะคิดอะไรไม่ได้เลย', 'หมั่นตรวจสอบพัดลมระบายความร้อน ไม่ให้มีฝุ่นเกาะหนาจนลมผ่านไม่ได้')" class="glass-card p-8 rounded-[2rem] cursor-pointer border-l-8 border-l-purple-500">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="bg-purple-100 p-4 rounded-2xl text-purple-600">
+                            <i class="fas fa-microchip text-4xl"></i>
+                        </div>
+                        <span class="bg-purple-50 text-purple-600 text-xs font-bold px-3 py-1 rounded-full uppercase">Processing</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">CPU</h3>
+                    <p class="text-slate-600 leading-relaxed">จอมบงการผู้ปราดเปรื่อง คิดเลขเร็วเป็นล้านครั้งใน 1 วินาที!</p>
+                    <div class="mt-4 flex items-center text-purple-500 font-bold text-sm">
+                        คลิกดูความลับ <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('RAM (หน่วยความจำชั่วคราว)', 'เปรียบเสมือน โต๊ะทำงาน ยิ่งโต๊ะกว้าง (RAM เยอะ) เราก็วางของได้เยอะ ทำงานหลายอย่างพร้อมกันได้ลื่นไหล แต่พอเลิกงาน (ปิดเครื่อง) ของบนโต๊ะจะถูกเก็บหายไปหมดเลย', 'อย่าสัมผัสแถบทองแดงด้านล่างโดยตรง เพราะไฟฟ้าสถิตจากมือเราอาจทำให้มันพังได้')" class="glass-card p-8 rounded-[2rem] cursor-pointer border-l-8 border-l-blue-500">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="bg-blue-100 p-4 rounded-2xl text-blue-600">
+                            <i class="fas fa-memory text-4xl"></i>
+                        </div>
+                        <span class="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase">Memory</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">RAM</h3>
+                    <p class="text-slate-600 leading-relaxed">พื้นที่ทำงานชั่วคราว ยิ่งเยอะ เครื่องยิ่งลื่น ไม่สะดุด</p>
+                    <div class="mt-4 flex items-center text-blue-500 font-bold text-sm">
+                        คลิกดูความลับ <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('Storage (หน่วยเก็บข้อมูล)', 'เปรียบเสมือน ตู้เก็บเอกสาร ใช้เก็บไฟล์หนัง รูปภาพ และเกมของเราไว้อย่างถาวร แม้จะปิดเครื่องไป ข้อมูลก็ยังอยู่ครบ', 'หลีกเลี่ยงการทำเครื่องตกกระแทก เพราะกลไกข้างในบอบบางมาก')" class="glass-card p-8 rounded-[2rem] cursor-pointer border-l-8 border-l-emerald-500">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="bg-emerald-100 p-4 rounded-2xl text-emerald-600">
+                            <i class="fas fa-database text-4xl"></i>
+                        </div>
+                        <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full uppercase">Storage</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">SSD / Hard Disk</h3>
+                    <p class="text-slate-600 leading-relaxed">คลังเก็บความทรงจำถาวร เก็บรูปและเกมได้เป็นหมื่นๆ รูป</p>
+                    <div class="mt-4 flex items-center text-emerald-500 font-bold text-sm">
+                        คลิกดูความลับ <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('Motherboard (แผงวงจรหลัก)', 'เปรียบเสมือน ถนนและโครงสร้างเมือง ที่เชื่อมต่อทุกอุปกรณ์เข้าด้วยกัน เป็นฐานที่ตั้งของ CPU, RAM และการ์ดต่างๆ', 'ระวังอย่าให้ความชื้นหรือน้ำสัมผัส เพราะจะเกิดการลัดวงจรทั้งแผง')" class="glass-card p-8 rounded-[2rem] cursor-pointer border-l-8 border-l-orange-500">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="bg-orange-100 p-4 rounded-2xl text-orange-600">
+                            <i class="fas fa-project-diagram text-4xl"></i>
+                        </div>
+                        <span class="bg-orange-50 text-orange-600 text-xs font-bold px-3 py-1 rounded-full uppercase">Main Circuit</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Motherboard</h3>
+                    <p class="text-slate-600 leading-relaxed">บ้านหลังใหญ่ของอุปกรณ์ทุกชิ้น เป็นตัวประสานงานหลัก</p>
+                    <div class="mt-4 flex items-center text-orange-500 font-bold text-sm">
+                        คลิกดูความลับ <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('GPU (หน่วยประมวลผลกราฟิก)', 'เปรียบเสมือน จิตรกรมือหนึ่ง ทำหน้าที่วาดภาพสวยๆ บนหน้าจอ ไม่ว่าจะเป็นแสงเงาในเกม หรือเอฟเฟกต์ในหนัง', 'หากเล่นเกมหนักๆ ควรพักเครื่องบ้างเพื่อให้พัดลมการ์ดจอได้ระบายความร้อน')" class="glass-card p-8 rounded-[2rem] cursor-pointer border-l-8 border-l-pink-500">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="bg-pink-100 p-4 rounded-2xl text-pink-600">
+                            <i class="fas fa-image text-4xl"></i>
+                        </div>
+                        <span class="bg-pink-50 text-pink-600 text-xs font-bold px-3 py-1 rounded-full uppercase">Graphic</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">VGA Card</h3>
+                    <p class="text-slate-600 leading-relaxed">สร้างโลกเสมือนให้สวยงาม ภาพสมจริงต้องยกให้ชิ้นนี้</p>
+                    <div class="mt-4 flex items-center text-pink-500 font-bold text-sm">
+                        คลิกดูความลับ <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('Power Supply (แหล่งจ่ายไฟ)', 'เปรียบเสมือน หัวใจ ที่คอยสูบฉีดเลือด (กระแสไฟฟ้า) ไปเลี้ยงอวัยวะ (อุปกรณ์) ต่างๆ ให้มีพลังงานทำงานได้', 'ไม่ควรดึงปลั๊กออกขณะเครื่องทำงาน เพราะอาจทำให้แหล่งจ่ายไฟพังเสียหาย')" class="glass-card p-8 rounded-[2rem] cursor-pointer border-l-8 border-l-yellow-500">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="bg-yellow-100 p-4 rounded-2xl text-yellow-600">
+                            <i class="fas fa-bolt text-4xl"></i>
+                        </div>
+                        <span class="bg-yellow-50 text-yellow-600 text-xs font-bold px-3 py-1 rounded-full uppercase">Energy</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Power Supply</h3>
+                    <p class="text-slate-600 leading-relaxed">โรงไฟฟ้าส่วนตัวของคอมพิวเตอร์ ผู้ให้พลังงานแก่ทุกคน</p>
+                    <div class="mt-4 flex items-center text-yellow-500 font-bold text-sm">
+                        คลิกดูความลับ <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="io-devices" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-chakra text-blue-900 section-title">📥 การรับข้อมูล และ 📤 การแสดงผล</h2>
+                <p class="text-slate-500 mt-4">คอมพิวเตอร์คุยกับเราผ่านอุปกรณ์เหล่านี้นะ!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        
+                <div class="bg-white p-8 rounded-[2.5rem] border-t-8 border-blue-400 shadow-lg">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-sign-in-alt text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-900 font-chakra">Input (หน่วยรับเข้า)</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6">คืออุปกรณ์ที่ใช้ "ส่งคำสั่ง" หรือ "ส่งข้อมูล" เข้าไปในเครื่องคอมพิวเตอร์</p>
+            
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl">
+                            <i class="fas fa-keyboard text-2xl text-blue-500 w-8"></i>
+                        <div>
+                            <span class="font-bold text-blue-900">Keyboard (แผงพิมพ์)</span>
+                            <p class="text-xs text-slate-500">ใช้พิมพ์ตัวอักษรและสั่งงาน</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl">
+                        <i class="fas fa-mouse text-2xl text-blue-500 w-8"></i>
+                        <div>
+                            <span class="font-bold text-blue-900">Mouse (เมาส์)</span>
+                            <p class="text-xs text-slate-500">ใช้คลิกเลือกสิ่งต่างๆ บนจอ</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl">
+                        <i class="fas fa-microphone text-2xl text-blue-500 w-8"></i>
+                        <div>
+                            <span class="font-bold text-blue-900">Microphone (ไมโครโฟน)</span>
+                            <p class="text-xs text-slate-500">ใช้รับเสียงพูดของเราเข้าไป</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-900 p-8 rounded-[2.5rem] shadow-lg text-white">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center">
+                        <i class="fas fa-sign-out-alt text-blue-200"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-chakra">Output (หน่วยส่งออก)</h3>
+                </div>
+                <p class="text-blue-200 mb-6">คืออุปกรณ์ที่ใช้ "แสดงผล" สิ่งที่คอมพิวเตอร์คิดออกมาให้เราเห็นหรือได้ยิน</p>
+            
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 p-4 bg-blue-800 rounded-2xl">
+                        <i class="fas fa-desktop text-2xl text-blue-300 w-8"></i>
+                        <div>
+                            <span class="font-bold">Monitor (หน้าจอ)</span>
+                            <p class="text-xs text-blue-400">โชว์รูปภาพและวิดีโอสวยๆ</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-blue-800 rounded-2xl">
+                        <i class="fas fa-volume-up text-2xl text-blue-300 w-8"></i>
+                        <div>
+                            <span class="font-bold">Speaker (ลำโพง)</span>
+                            <p class="text-xs text-blue-400">ส่งเสียงเพลงและเสียงเกมออกมา</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-blue-800 rounded-2xl">
+                        <i class="fas fa-print text-2xl text-blue-300 w-8"></i>
+                        <div>
+                            <span class="font-bold">Printer (เครื่องพิมพ์)</span>
+                            <p class="text-xs text-blue-400">พิมพ์รูปหรือการบ้านออกมาบนกระดาษ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+        <section id="storybook" class="py-20 bg-white rounded-[3rem] px-8 shadow-sm border border-slate-100">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold section-title">📖 นิทาน: เมื่อคอมพิวเตอร์ป่วย</h2>
+                <p class="text-slate-500">คลิกที่ลูกศรเพื่ออ่านนิทานทีละหน้า</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-indigo-50 p-8 md:p-12 rounded-3xl min-h-[300px] flex flex-col justify-center items-center text-center relative">
+                <div id="story-content" class="transition-all duration-500">
+                    <h3 id="story-title" class="text-2xl font-bold text-indigo-800 mb-4">กาลครั้งหนึ่งนานมาแล้ว...</h3>
+                    <p id="story-text" class="text-lg leading-relaxed text-slate-700">มีคอมพิวเตอร์น้อยชื่อ "จิ๋ว" ที่ดูแลตัวเองดีมาก แต่วันหนึ่งจิ๋วกินขนมตกใส่คีย์บอร์ด...</p>
+                </div>
+                <div class="flex gap-4 mt-8">
+                    <button onclick="prevStory()" class="bg-white p-3 rounded-full shadow-md hover:bg-slate-100"><i class="fas fa-chevron-left"></i></button>
+                    <span id="story-page" class="py-2 px-4 font-bold">1/3</span>
+                    <button onclick="nextStory()" class="bg-white p-3 rounded-full shadow-md hover:bg-slate-100"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="video-hub" class="container mx-auto px-4 py-16">
+    <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold font-chakra"><i class="fas fa-play-circle text-red-500 mr-2"></i> ห้องเรียนวิดีโอ</h2>
+        <span class="text-slate-500 text-sm">รวม 4 บทเรียนสำคัญ</span>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group cursor-pointer" onclick="changeMainVideo('https://www.youtube.com/embed/S3m7-O4Y8os', 'รู้จักกับ Hardware')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden mb-3">
+                <img src="https://img.youtube.com/vi/S3m7-O4Y8os/mqdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <i class="fas fa-play text-white text-3xl"></i>
+                </div>
+            </div>
+            <h4 class="font-bold text-slate-800 line-clamp-1">1. รู้จักกับ Hardware คืออะไร?</h4>
+            <p class="text-xs text-slate-500">ความยาว: 5:20 นาที</p>
+        </div>
+
+        <div class="group cursor-pointer" onclick="changeMainVideo('https://www.youtube.com/embed/AkFi90lZmXA', 'เจาะลึก CPU สมองกล')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden mb-3">
+                <img src="https://img.youtube.com/vi/AkFi90lZmXA/mqdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <i class="fas fa-play text-white text-3xl"></i>
+                </div>
+            </div>
+            <h4 class="font-bold text-slate-800 line-clamp-1">2. เจาะลึก CPU สมองกล</h4>
+            <p class="text-xs text-slate-500">ความยาว: 4:15 นาที</p>
+        </div>
+
+        <div class="group cursor-pointer" onclick="changeMainVideo('https://www.youtube.com/embed/I8e0jnm39lE', 'ความลับของ RAM และ Storage')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden mb-3">
+                <img src="https://img.youtube.com/vi/I8e0jnm39lE/mqdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <i class="fas fa-play text-white text-3xl"></i>
+                </div>
+            </div>
+            <h4 class="font-bold text-slate-800 line-clamp-1">3. ความลับของ RAM และ Storage</h4>
+            <p class="text-xs text-slate-500">ความยาว: 6:30 นาที</p>
+        </div>
+
+        <div class="group cursor-pointer" onclick="changeMainVideo('https://www.youtube.com/embed/x9fIdSOnf_k', 'การดูแลคอมพิวเตอร์')">
+            <div class="relative aspect-video rounded-2xl overflow-hidden mb-3">
+                <img src="https://img.youtube.com/vi/x9fIdSOnf_k/mqdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <i class="fas fa-play text-white text-3xl"></i>
+                </div>
+            </div>
+            <h4 class="font-bold text-slate-800 line-clamp-1">4. การดูแลคอมพิวเตอร์เบื้องต้น</h4>
+            <p class="text-xs text-slate-500">ความยาว: 3:50 นาที</p>
+        </div>
+    </div>
+
+    <div id="video-player-container" class="hidden mt-10 p-6 bg-slate-900 rounded-[2.5rem] shadow-2xl animate-fade-in">
+        <div class="flex justify-between items-center mb-4">
+            <h3 id="current-video-title" class="text-white font-bold text-xl">ชื่อวิดีโอ</h3>
+            <button onclick="closeVideo()" class="text-white/50 hover:text-white"><i class="fas fa-times"></i> ปิดวิดีโอ</button>
+        </div>
+        <div class="aspect-video w-full rounded-2xl overflow-hidden">
+            <iframe id="main-video-frame" class="w-full h-full" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<section id="game-library" class="container mx-auto px-4 py-16 bg-white rounded-[3.5rem] shadow-sm border border-slate-100">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold font-chakra"><i class="fas fa-gamepad text-indigo-500 mr-2"></i> คลังเกมทบทวนความรู้</h2>
+        <p class="text-slate-500 mt-2">เล่นเกมเพื่อรับเหรียญรางวัลและคะแนนสะสม</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <a href="https://wordwall.net/resource/3063510" target="_blank" class="flex items-center gap-6 p-6 rounded-3xl border-2 border-slate-50 hover:border-indigo-200 hover:bg-indigo-50/50 transition group">
+            <div class="w-24 h-24 bg-indigo-100 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition">
+                <i class="fas fa-puzzle-piece text-4xl text-indigo-600"></i>
+            </div>
+            <div>
+                <h4 class="font-bold text-xl mb-1 text-slate-800">เกมจับคู่ชื่ออุปกรณ์</h4>
+                <p class="text-slate-500 text-sm">ทบทวนชื่อ Hardware ในเครื่องคอมพิวเตอร์</p>
+                <div class="mt-3 flex items-center text-indigo-600 font-bold text-xs uppercase tracking-widest">
+                    เริ่มเล่นเลย <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://wordwall.net/resource/2051662" target="_blank" class="flex items-center gap-6 p-6 rounded-3xl border-2 border-slate-50 hover:border-orange-200 hover:bg-orange-50/50 transition group">
+            <div class="w-24 h-24 bg-orange-100 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition">
+                <i class="fas fa-map-signs text-4xl text-orange-600"></i>
+            </div>
+            <div>
+                <h4 class="font-bold text-xl mb-1 text-slate-800">เกมเขาวงกตประมวลผล</h4>
+                <p class="text-slate-500 text-sm">ช่วยจิ๋วหาทางไปรับข้อมูลจาก CPU ให้ถูกต้อง</p>
+                <div class="mt-3 flex items-center text-orange-600 font-bold text-xs uppercase tracking-widest">
+                    เริ่มเล่นเลย <i class="fas fa-chevron-right ml-2 text-[10px]"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<script>
+    // ฟังก์ชันจัดการคลังวิดีโอ
+    function changeMainVideo(url, title) {
+        const container = document.getElementById('video-player-container');
+        const frame = document.getElementById('main-video-frame');
+        const titleText = document.getElementById('current-video-title');
+        
+        container.classList.remove('hidden');
+        frame.src = url;
+        titleText.innerText = title;
+        
+        // เลื่อนหน้าจอลงมาที่ตัวเล่นวิดีโอ
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function closeVideo() {
+        const container = document.getElementById('video-player-container');
+        const frame = document.getElementById('main-video-frame');
+        container.classList.add('hidden');
+        frame.src = ""; // หยุดเล่นวิดีโอเมื่อปิด
+    }
+</script>
+
+        <section id="quiz" class="py-20 bg-indigo-900 rounded-[3.5rem] text-white">
+            <div class="max-w-2xl mx-auto px-6">
+                <div class="text-center mb-10">
+                    <span class="bg-indigo-500/30 px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase">Knowledge Test</span>
+                    <h2 class="text-4xl font-bold mt-4">ท้าทายความรู้!</h2>
+                    <p id="quiz-progress" class="text-indigo-300 mt-2">ข้อที่ 1/5</p>
+                </div>
+
+                <div id="quiz-box" class="bg-white text-slate-800 p-8 rounded-[2.5rem] shadow-2xl">
+                    <h3 id="question-text" class="text-xl md:text-2xl font-bold mb-8 text-center leading-relaxed">กำลังโหลดคำถาม...</h3>
+                    <div id="options-container" class="grid gap-4"></div>
+                </div>
+
+                <div id="quiz-feedback" class="hidden mt-8 p-6 bg-white/10 rounded-3xl text-center backdrop-blur-md">
+                    <p id="feedback-text" class="font-bold text-2xl mb-2"></p>
+                    <p id="explanation-text" class="text-indigo-100 opacity-80 mb-6"></p>
+                    <button onclick="nextQuestion()" class="bg-indigo-500 hover:bg-indigo-400 text-white px-10 py-3 rounded-full font-bold shadow-lg transition">
+                        ลุยต่อข้อถัดไป
+                    </button>
+                </div>
+
+                <div id="result-screen" class="hidden text-center bg-white text-slate-800 p-12 rounded-[2.5rem]">
+                    <div class="text-6xl mb-6">🏆</div>
+                    <h2 class="text-4xl font-bold mb-2">จบเกมนักสืบคอม!</h2>
+                    <p class="text-2xl mb-8" id="final-score"></p>
+                    <button onclick="resetQuiz()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold hover:bg-indigo-700 shadow-lg">
+                        เริ่มใหม่อีกครั้ง
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="infoModal" class="modal flex items-center justify-center p-4">
+        <div class="bg-white p-10 rounded-[2.5rem] max-w-lg w-full relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-2xl hover:text-red-500 transition">&times;</button>
+            <h2 id="modalTitle" class="text-3xl font-bold text-indigo-600 mb-6"></h2>
+            <div class="space-y-4">
+                <div class="bg-slate-50 p-4 rounded-2xl">
+                    <h4 class="text-slate-400 font-bold text-xs uppercase tracking-wider mb-1">หน้าที่การทำงาน</h4>
+                    <p id="modalDesc" class="text-slate-700 leading-relaxed"></p>
+                </div>
+                <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                    <h4 class="text-emerald-600 font-bold text-xs uppercase tracking-wider mb-1">เคล็ดลับการดูแล</h4>
+                    <p id="modalCare" class="text-slate-700 leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-12 text-center text-slate-400">
+        <p>© 2026 Inside Computer Learning Center</p>
+        <p class="text-xs mt-2 uppercase tracking-widest">สร้างสรรค์เพื่อความรู้ที่สนุกและสบายตา</p>
+    </footer>
+
+    <script>
+        // --- Storybook Data & Logic ---
+        const stories = [
+            { title: "บทที่ 1: ของโปรดของจิ๋ว", text: "จิ๋วคือคอมพิวเตอร์ที่ชอบรับพลังงานไฟฟ้าเป็นอาหาร แต่จิ๋วเกลียด 'น้ำ' และ 'เศษขนม' มากที่สุด เพราะมันจะทำให้วงจรของจิ๋วช็อต!", page: "1/3" },
+            { title: "บทที่ 2: ความผิดพลาดของเจ้าของ", text: "วันหนึ่งมีน้ำแดงหยดลงบนคีย์บอร์ด จิ๋วส่งเสียงร้อง 'ปี๊บๆ!' เพราะปุ่มกดเริ่มค้าง เพื่อนๆ ในเครื่องอย่าง CPU ต้องทำงานหนักขึ้นเพื่อแจ้งเตือน", page: "2/3" },
+            { title: "บทที่ 3: จิ๋วกลับมาแข็งแรง", text: "โชคดีที่เจ้าของใช้ผ้าแห้งเช็ดและไม่แกะเครื่องเอง จิ๋วจึงกลับมาทำงานได้ปกติ แต่อย่าลืมนะ! ต้องเว้นที่ว่างให้จิ๋วระบายอากาศด้วย", page: "3/3" }
+        ];
+        let storyIdx = 0;
+        function updateStory() {
+            const content = document.getElementById('story-content');
+            content.style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('story-title').innerText = stories[storyIdx].title;
+                document.getElementById('story-text').innerText = stories[storyIdx].text;
+                document.getElementById('story-page').innerText = stories[storyIdx].page;
+                content.style.opacity = 1;
+            }, 300);
+        }
+        function nextStory() { storyIdx = (storyIdx + 1) % stories.length; updateStory(); }
+        function prevStory() { storyIdx = (storyIdx - 1 + stories.length) % stories.length; updateStory(); }
+
+        // --- Hardware Modal ---
+        function openModal(title, desc, care) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalCare').innerText = care;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
+
+        // --- Quiz Logic (ปรับปรุงใหม่) ---
+        const quizData = [
+            { q: "ถ้าเปรียบเทียบกับร่างกายคนเรา CPU คือส่วนใด?", options: ["แขนขา", "หัวใจ", "สมอง", "ดวงตา"], correct: 2, explain: "CPU ทำหน้าที่คิดและตัดสินใจทุกอย่างเหมือนสมองครับ" },
+            { q: "น้ำอัดลมหยดใส่คีย์บอร์ด ควรทำอย่างไรเป็นอันดับแรก?", options: ["รีบเช็ดออกและปิดเครื่อง", "ฉีดน้ำล้างทันที", "ใช้ไดร์เป่าผมลมร้อนเป่า", "ปล่อยทิ้งไว้ให้แห้งเอง"], correct: 0, explain: "การปิดเครื่องและเช็ดออกทันทีจะช่วยลดความเสี่ยงที่น้ำจะลัดวงจร" },
+            { q: "ทำไมเราไม่ควรวางคอมพิวเตอร์ชิดกำแพงเกินไป?", options: ["ทำให้เน็ตช้า", "กลัวกำแพงสกปรก", "เพื่อให้ระบายความร้อนได้ดี", "เพื่อให้สายไฟไม่หัก"], correct: 2, explain: "พัดลมต้องการพื้นที่ในการดูดอากาศเย็นเข้าและระบายลมร้อนออก" }
+        ];
+
+        let currentQ = 0; let score = 0;
+
+        function initQuiz() {
+            const data = quizData[currentQ];
+            document.getElementById('quiz-progress').innerText = `ข้อที่ ${currentQ + 1}/${quizData.length}`;
+            document.getElementById('question-text').innerText = data.q;
+            const optionsBox = document.getElementById('options-container');
+            optionsBox.innerHTML = '';
+            data.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-btn font-semibold';
+                btn.innerText = opt;
+                btn.onclick = () => selectAnswer(index);
+                optionsBox.appendChild(btn);
+            });
+            document.getElementById('quiz-box').classList.remove('hidden');
+            document.getElementById('quiz-feedback').classList.add('hidden');
+        }
+
+        function selectAnswer(index) {
+            const data = quizData[currentQ];
+            const btns = document.querySelectorAll('.quiz-btn');
+            const feedback = document.getElementById('quiz-feedback');
+            btns.forEach(btn => btn.disabled = true);
+            if(index === data.correct) {
+                btns[index].classList.add('correct');
+                document.getElementById('feedback-text').innerText = "เก่งมาก! ถูกต้องครับ ✨";
+                score++;
+            } else {
+                btns[index].classList.add('incorrect');
+                btns[data.correct].classList.add('correct');
+                document.getElementById('feedback-text').innerText = "พลาดไปนิดเดียว... ✌️";
+            }
+            document.getElementById('explanation-text').innerText = "เกร็ดความรู้: " + data.explain;
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if(currentQ < quizData.length) { initQuiz(); } 
+            else { showResult(); }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-box').classList.add('hidden');
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('quiz-progress').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('final-score').innerText = `คุณสอบได้ ${score} / ${quizData.length} คะแนน`;
+        }
+
+        function resetQuiz() {
+            currentQ = 0; score = 0;
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-progress').classList.remove('hidden');
+            initQuiz();
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
